@@ -18,6 +18,8 @@
 *.txt
 *.pickle
 *.JPG
+*.jpeg
+*.png
 # Ignore all vim temp files
 *~
 
@@ -25,3 +27,6 @@
 *.swp
 *.swo
 smtp.txt
+
+#files not ready for primetime
+settlersSimulator.py

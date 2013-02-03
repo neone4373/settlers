@@ -196,24 +196,7 @@ class Hexing:
             **propP
             )   
           #print pid,self.nodeArray[pid-1][0]
-          for xx in [1,2,3,4,5]:
-            h = self.hexSize
-            wt = h/20
-            lft = pts[0] + xx * wt - h/4
-            bt = pts[1]-wt
-            htV = self.nodeArray[pid-1][xx]
-            #print htV,len(self.rolls)
-            ht = round((h*(3./4))*(float(htV)/len(self.rolls)))
-            propB = dict( alpha=0.5,color = self.resCDct[xx])
-            #print "pid,xx,node"
-            #print pid,xx,
-            ax.bar(left=lft,
-              bottom=bt,
-              height=ht,
-              width=wt,
-              #align='center',
-              linewidth = 0,
-              **propB)
+          self.drawBars(pts,pid,ax),
           pid += 1
       # colors is sequence of rgba tuples
       # linestyle is a string or dash tuple. Legal string values are
@@ -246,6 +229,27 @@ class Hexing:
     close()
     #for kk in self.ptList:
     #  print kk[1]
+
+  def drawBars(self,pts,pid,a):
+    #draws the bars around the nodes of resources gathered
+    for xx in [1,2,3,4,5]:
+      h = self.hexSize
+      wt = h/20
+      lft = pts[0] + xx * wt - h/4
+      bt = pts[1]-wt
+      htV = self.nodeArray[pid-1][xx]
+      #print htV,len(self.rolls)
+      ht = round((h*(3./4))*(float(htV)/len(self.rolls)))
+      propB = dict( alpha=0.5,color = self.resCDct[xx])
+      #print "pid,xx,node"
+      #print pid,xx,
+      a.bar(left=lft,
+        bottom=bt,
+        height=ht,
+        width=wt,
+        #align='center',
+        linewidth = 0,
+        **propB)
 
   def drawHist(self,a,r,h):
     propBar = dict( alpha=0.5,color = 'blue')
